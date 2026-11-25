@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CARTA PARA DIANA MARTINEZ CON AMOR · 1 Año y 1 Mes</title>
+
+  <!-- Tipografías románticas y legibles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    /**
+     * Configuración visual de Tailwind en tonos rojos carmesí, vino y pétalos cálidos.
+     */
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+          },
+          colors: {
+            crimson: {
+              950: '#140307',
+              900: '#24050c',
+              850: '#380712',
+              800: '#520a1a',
+            },
+            petal: {
+              200: '#fecdd3',
+              300: '#fda4af',
+              400: '#fb7185',
+              500: '#e11d48',
+              600: '#be123c',
+            },
+          },
+          animation: {
+            'float-slow': 'floatSlow 5.5s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 3.2s ease-in-out infinite',
+          },
+          keyframes: {
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-9px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 28px rgba(225, 29, 72, 0.35)' },
+              '50%': { boxShadow: '0 0 46px rgba(251, 113, 133, 0.62)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: #140307;
+      color: #fff1f2;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(225, 29, 72, 0.24), transparent 45%),
+        radial-gradient(circle at 82% 25%, rgba(190, 18, 60, 0.22), transparent 48%),
+        radial-gradient(circle at 50% 88%, rgba(136, 19, 55, 0.28), transparent 55%),
+        linear-gradient(180deg, #170308 0%, #23050c 52%, #120206 100%);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Lienzo de flores rojas flotantes, pétalos brillantes y destellos */
+    #floral-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Tarjetas románticas translúcidas en rojo profundo */
+    .crimson-glass {
+      background: rgba(42, 7, 15, 0.68);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(253, 164, 175, 0.2);
+      box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 228, 230, 0.12);
+    }
+
+    .crimson-card-hover {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+
+    .crimson-card-hover:hover {
+      transform: translateY(-6px);
+      border-color: rgba(251, 113, 133, 0.55);
+      box-shadow: 0 24px 60px rgba(225, 29, 72, 0.25);
+    }
+
+    /* Sobre cerrado interactivo de presentación */
+    .envelope-box {
+      position: relative;
+      background: linear-gradient(155deg, #7f1027 0%, #560718 55%, #3d0410 100%);
+      border: 1.5px solid rgba(253, 164, 175, 0.36);
+      box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.65),
+        0 0 45px rgba(225, 29, 72, 0.32);
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.38s ease,
+                  border-color 0.38s ease;
+    }
+
+    .envelope-box:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(254, 205, 211, 0.65);
+      box-shadow:
+        0 34px 80px rgba(0, 0, 0, 0.72),
+        0 0 60px rgba(244, 63, 94, 0.45);
+    }
+
+    .envelope-flap {
+      clip-path: polygon(0 0, 50% 62%, 100% 0);
+      background: linear-gradient(180deg, #9f1239 0%, #6b0b20 100%);
+      transform-origin: top center;
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .envelope-opening .envelope-flap {
+      transform: rotateX(175deg);
+    }
+
+    /* Revelación suave de la carta abierta */
+    @keyframes letterUnfold {
+      0% {
+        opacity: 0;
+        transform: translateY(28px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .letter-unfold {
+      animation: letterUnfold 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.94) translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-pop {
+      animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="text-rose-50 antialiased selection:bg-rose-600/40 selection:text-rose-100">
+
+  <!-- Lienzo animado de rosas rojas, pétalos luminosos y destellos -->
+  <canvas id="floral-canvas" aria-hidden="true"></canvas>
+
+  <!-- =========================================================================
+       ARCHIVO DE MÚSICA: coloca tu "musica.mp3" en la misma carpeta
+       o cambia el atributo src por el enlace de tu canción.
+       ========================================================================= -->
+  <audio id="bg-music" loop preload="auto" playsinline>
+    <source id="bg-music-source" src="musica.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Contenedor principal -->
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- Notificación suave en pantalla -->
+    <div id="toast-banner" class="fixed bottom-5 right-5 z-40 max-w-sm hidden">
+      <div class="crimson-glass rounded-2xl px-4 py-3 border border-rose-300/35 text-xs sm:text-sm text-rose-100 flex items-center gap-3 shadow-2xl">
+        <span class="text-lg">🌹</span>
+        <p id="toast-message"></p>
+      </div>
+    </div>
+
+    <main class="flex-1 flex flex-col justify-center">
+      <!-- =====================================================================
+           PRESENTACIÓN INICIAL: CARTA / SOBRE CERRADO CON SELLO DE ROSA
+           ===================================================================== -->
+      <section id="envelope-presentation" class="py-14 sm:py-24 px-4 sm:px-6 flex items-center justify-center">
+        <div class="max-w-xl w-full text-center">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full crimson-glass text-xs sm:text-sm text-rose-200 mb-6 animate-float-slow">
+            <span>🌹</span>
+            <span>1 Año y 1 Mes Juntos</span>
+            <span>🌹</span>
+          </div>
+
+          <h1 class="font-serif text-3xl sm:text-5xl font-semibold text-white leading-tight tracking-wide mb-3">
+            CARTA PARA DIANA MARTINEZ CON AMOR
+          </h1>
+          <p class="text-sm sm:text-base text-rose-100/80 max-w-md mx-auto mb-9">
+            Haz clic sobre la carta para abrirla y leer mis palabras y dedicatorias por este 1 año y 1 mes.
+          </p>
+
+          <!-- Sobre interactivo -->
+          <div
+            id="closed-envelope"
+            role="button"
+            tabindex="0"
+            aria-label="Abrir carta de amor"
+            class="envelope-box animate-pulse-glow rounded-3xl mx-auto max-w-md w-full p-6 sm:p-8 cursor-pointer select-none overflow-hidden"
+          >
+            <!-- Solapa superior del sobre -->
+            <div class="envelope-flap h-28 sm:h-32 w-full rounded-t-3xl flex items-start justify-center pt-3">
+              <span class="text-xs tracking-[0.18em] uppercase text-rose-100/85 font-medium px-2 text-center">
+                CARTA PARA DIANA MARTINEZ CON AMOR
+              </span>
+            </div>
+
+            <!-- Centro del sobre con sello de rosa roja -->
+            <div class="relative z-10 -mt-6 flex flex-col items-center">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-rose-500 via-rose-600 to-red-900 border-2 border-rose-200/60 shadow-xl flex items-center justify-center text-3xl sm:text-4xl mb-4">
+                🌹
+              </div>
+              <p class="font-serif text-xl sm:text-2xl font-semibold text-rose-100 tracking-wide">
+                CARTA PARA DIANA MARTINEZ CON AMOR
+              </p>
+              <p class="text-xs sm:text-sm text-rose-200/85 mt-1">
+                1 Año y 1 Mes · Toca aquí para abrir la carta
+              </p>
+
+              <span class="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-rose-500 hover:bg-rose-400 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-rose-900/60 transition">
+                <span>Abrir carta</span>
+                <span>♥</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           CONTENIDO REVELADO AL ABRIR LA CARTA: MENSAJES, NOTAS Y DEDICATORIAS
+           ===================================================================== -->
+      <div id="opened-letter-experience" class="hidden letter-unfold">
+        <!-- Carta principal abierta -->
+        <section id="carta-abierta" class="pt-8 sm:pt-14 pb-12 px-4 sm:px-6">
+          <div class="max-w-4xl mx-auto">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full crimson-glass text-xs sm:text-sm text-rose-200">
+                <span>🌹</span>
+                <span>CARTA PARA DIANA MARTINEZ CON AMOR · 1 Año y 1 Mes</span>
+              </span>
+
+              <button
+                id="reopen-animation-btn"
+                type="button"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full crimson-glass hover:bg-rose-800/60 text-xs sm:text-sm text-rose-100 transition cursor-pointer"
+              >
+                <span>✉️</span>
+                <span>Volver a ver el sobre</span>
+              </button>
+            </div>
+
+            <article class="crimson-glass rounded-3xl p-6 sm:p-11 relative overflow-hidden">
+              <div class="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-rose-600/20 blur-3xl pointer-events-none"></div>
+              <div class="absolute -bottom-20 -left-20 w-56 h-56 rounded-full bg-red-700/20 blur-3xl pointer-events-none"></div>
+
+              <div class="relative z-10">
+                <h2 class="font-serif text-2xl sm:text-4xl font-semibold text-rose-300 tracking-wide mb-5">
+                  CARTA PARA DIANA MARTINEZ CON AMOR
+                </h2>
+
+                <div class="space-y-4 text-sm sm:text-base md:text-lg text-rose-50/95 leading-relaxed">
+                  <p>
+                    Hoy celebramos <strong class="text-rose-300 font-semibold">1 año y 1 mes</strong> de esta historia tan bonita que construimos día a día. Entre tantas flores rojas que simbolizan el amor profundo, tú eres la que más florece en mi vida y la que hace que todo valga la pena.
+                  </p>
+                  <p>
+                    Gracias por cada abrazo sincero, por tus palabras que me sostienen, por las risas compartidas y por hacer que cada instante a tu lado se sienta mágico. Un año y un mes contigo me han enseñado que el amor verdadero se cuida con detalles, paciencia y complicidad.
+                  </p>
+                  <p>
+                    Quiero seguir regalándote flores, cartas y momentos inolvidables en cada etapa que venga. Gracias por ser mi persona favorita.
+                  </p>
+                </div>
+
+                <!-- Selector interactivo de mensajes lindos dentro de la carta -->
+                <div class="mt-8 pt-6 border-t border-rose-200/15">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                    <span class="text-xs uppercase tracking-[0.18em] text-rose-300 font-semibold">
+                      Frases del corazón
+                    </span>
+                    <button
+                      id="cycle-note-btn"
+                      type="button"
+                      class="self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs sm:text-sm font-medium shadow-lg shadow-rose-900/50 transition cursor-pointer"
+                    >
+                      <span>Siguiente mensaje</span>
+                      <span>🌹</span>
+                    </button>
+                  </div>
+
+                  <div class="rounded-2xl bg-crimson-950/65 border border-rose-300/20 p-5 sm:p-6">
+                    <p id="active-note-tag" class="text-xs text-rose-300 font-medium mb-1.5">
+                      Nota 1 de 4 · Amor eterno
+                    </p>
+                    <p id="active-note-quote" class="font-serif italic text-xl sm:text-2xl text-white leading-snug">
+                      “Cumplir 1 año y 1 mes contigo es tener el corazón lleno de motivos para sonreír.”
+                    </p>
+                  </div>
+                </div>
+
+                <div class="mt-7 pt-4 border-t border-rose-200/15 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-rose-200">
+                  <span class="font-serif italic text-xl">ATT con mucho amor DAVID MONTAÑO ♥</span>
+                  <span class="text-xs text-rose-200/75">1 Año · 1 Mes Juntos</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             SECCIÓN DE DEDICATORIAS ESPECIALES PARA DIANA MARTINEZ
+             =================================================================== -->
+        <section id="dedicatorias" class="py-12 pb-24 px-4 sm:px-6">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-10">
+              <span class="text-xs uppercase tracking-[0.2em] text-rose-300 font-semibold">
+                Palabras hechas para ti
+              </span>
+              <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-white mt-2">
+                Dedicatorias de 1 año y 1 mes
+              </h2>
+              <p class="text-sm sm:text-base text-rose-100/80 max-w-2xl mx-auto mt-2">
+                Cada tarjeta guarda una dedicatoria especial para ti, Diana. Toca cualquiera para leerla con calma.
+              </p>
+            </div>
+
+            <div id="dedications-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- Tarjetas generadas desde DEDICATIONS -->
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="border-t border-rose-200/15 py-6 px-4 text-center text-xs sm:text-sm text-rose-200/75">
+      <p>
+        ATT con mucho amor DAVID MONTAÑO · <span class="text-rose-300 font-medium">1 año y 1 mes</span> juntos ♥
+      </p>
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       MODAL PARA LEER CADA DEDICATORIA EN DETALLE
+       ========================================================================= -->
+  <div
+    id="dedication-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dedication-modal-title"
+  >
+    <div class="crimson-glass modal-pop rounded-3xl max-w-xl w-full overflow-hidden border border-rose-300/30">
+      <div class="p-6 sm:p-8 relative">
+        <button
+          id="close-dedication-modal"
+          type="button"
+          aria-label="Cerrar dedicatoria"
+          class="w-10 h-10 rounded-full bg-black/55 hover:bg-rose-700 text-white flex items-center justify-center absolute top-5 right-5 transition cursor-pointer"
+        >
+          ✕
+        </button>
+
+        <div class="flex flex-wrap items-center gap-2 mb-3 pr-12">
+          <span id="dedication-modal-icon" class="text-2xl">🌹</span>
+          <span id="dedication-modal-badge" class="text-xs px-3 py-1 rounded-full bg-rose-600/30 text-rose-200 border border-rose-300/25"></span>
+        </div>
+
+        <h3 id="dedication-modal-title" class="font-serif text-2xl sm:text-3xl font-semibold text-white mb-4"></h3>
+        <p id="dedication-modal-text" class="text-sm sm:text-base text-rose-100/90 leading-relaxed"></p>
+        <p id="dedication-modal-sign" class="font-serif italic text-lg sm:text-xl text-rose-300 mt-6"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SCRIPTS: MÚSICA, CARTA INTERACTIVA, MENSAJES, DEDICATORIAS Y FLORES ROJAS
+       ========================================================================= -->
+  <script>
+    const ROMANTIC_NOTES = [
+      {
+        tag: 'Nota 1 de 4 · Amor eterno',
+        quote: '“Cumplir 1 año y 1 mes contigo es tener el corazón lleno de motivos para sonreír.”',
+      },
+      {
+        tag: 'Nota 2 de 4 · Mi paz',
+        quote: '“Entre tantas cosas que cambian, tú eres la calma y la alegría que siempre quiero encontrar.”',
+      },
+      {
+        tag: 'Nota 3 de 4 · Complicidad',
+        quote: '“Cada risa contigo y cada detalle compartido hacen que este camino sea mi lugar favorito.”',
+      },
+      {
+        tag: 'Nota 4 de 4 · Por lo que viene',
+        quote: '“Este primer año y un mes son apenas el comienzo de todo lo bonito que aún nos espera.”',
+      },
+    ];
+
+    const DEDICATIONS = [
+      {
+        icon: '🌹',
+        badge: 'Dedicatoria 1',
+        title: 'Por este 1 año y 1 mes',
+        preview: 'Gracias por cada día compartido, por tu cariño sincero y por hacer que mi vida se sienta más luminosa a tu lado.',
+        fullText: 'Diana, celebrar 1 año y 1 mes a tu lado me llena de orgullo y ternura. Gracias por cada momento que hemos vivido, por tu forma tan única de querer y por hacer que cada día valga la pena solo por poder compartirlo contigo.',
+        sign: '— Siempre tuyo, con todo mi amor',
+      },
+      {
+        icon: '💌',
+        badge: 'Dedicatoria 2',
+        title: 'Lo más bonito que he encontrado',
+        preview: 'En tu sonrisa, en tu voz y en tu manera de estar presente encontré un cariño que cuido todos los días.',
+        fullText: 'Eres de las cosas más bonitas que han llegado a mi vida. Me encanta la paz que me transmites, las charlas que se van sin darnos cuenta y la certeza de saber que contamos el uno con el otro en los días buenos y en los difíciles.',
+        sign: '— Hoy, mañana y siempre',
+      },
+      {
+        icon: '❤️',
+        badge: 'Dedicatoria 3',
+        title: 'Gracias por darme tanta alegría',
+        preview: 'Por hacerme reír, por darme un giro tan bonito y por convertir lo simple en un recuerdo inolvidable.',
+        fullText: 'Gracias por cada risa que me sacas, por cada detalle que tienes y por darle un giro tan bonito a mis días. Contigo hasta los ratos más sencillos se vuelven especiales y se quedan guardados en mi memoria.',
+        sign: '— Con todo mi corazoncito',
+      },
+      {
+        icon: '✨',
+        badge: 'Dedicatoria 4',
+        title: 'Por todos los meses que vienen',
+        preview: 'Mi deseo es seguir sumando meses, abrazos, flores y sueños cumplidos caminando de tu mano.',
+        fullText: 'Este 1 año y 1 mes es solo una página más de nuestra historia. Quiero seguir a tu lado construyendo recuerdos, apoyándonos y celebrando cada paso que demos juntos con el mismo amor de siempre.',
+        sign: '— Para Diana Martinez, con amor',
+      },
+    ];
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const banner = document.getElementById('toast-banner');
+      const text = document.getElementById('toast-message');
+      if (!banner || !text) return;
+
+      text.textContent = msg;
+      banner.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 3400);
+    }
+
+    /**
+     * Reproductor de música de fondo con intento de autoplay y desbloqueo al tocar.
+     */
+    (function setupAudioPlayer() {
+      const audio = document.getElementById('bg-music');
+      const source = document.getElementById('bg-music-source');
+      if (!audio) return;
+
+      audio.volume = 0.9;
+      let isPlaying = false;
+
+      function syncMusicFile() {
+        const trackFile = 'musica.mp3';
+        if (source) {
+          source.setAttribute('src', trackFile);
+        }
+        if (audio.src.indexOf(trackFile) === -1) {
+          audio.src = trackFile;
+        }
+        audio.load();
+      }
+
+      syncMusicFile();
+
+      async function playMusic(showErrorIfBlocked = false) {
+        try {
+          syncMusicFile();
+          audio.muted = false;
+          audio.volume = 0.9;
+          const promise = audio.play();
+          if (promise !== undefined) {
+            await promise;
+          }
+          isPlaying = true;
+          return true;
+        } catch (err) {
+          isPlaying = false;
+          if (showErrorIfBlocked) {
+            showToast('No se pudo reproducir musica.mp3. Verifica que esté en la misma carpeta que index.html.');
+          }
+          return false;
+        }
+      }
+
+      window.__startRomanticAudio = function () {
+        playMusic(true);
+      };
+
+      document.addEventListener('pointerdown', () => {
+        if (!isPlaying) {
+          playMusic(false);
+        }
+      }, { once: true });
+
+      audio.addEventListener('play', () => {
+        isPlaying = true;
+      });
+      audio.addEventListener('pause', () => {
+        isPlaying = false;
+      });
+    })();
+
+    /**
+     * Presentación inicial con carta cerrada que se abre al hacer clic,
+     * más ciclo de notas bonitas y tarjetas de dedicatorias.
+     */
+    (function setupLetterAndDedications() {
+      const presentationSection = document.getElementById('envelope-presentation');
+      const closedEnvelope = document.getElementById('closed-envelope');
+      const openedExperience = document.getElementById('opened-letter-experience');
+      const reopenBtn = document.getElementById('reopen-animation-btn');
+
+      const cycleNoteBtn = document.getElementById('cycle-note-btn');
+      const activeNoteTag = document.getElementById('active-note-tag');
+      const activeNoteQuote = document.getElementById('active-note-quote');
+
+      const dedicationsGrid = document.getElementById('dedications-grid');
+      const dedicationModal = document.getElementById('dedication-modal');
+      const dedicationModalIcon = document.getElementById('dedication-modal-icon');
+      const dedicationModalBadge = document.getElementById('dedication-modal-badge');
+      const dedicationModalTitle = document.getElementById('dedication-modal-title');
+      const dedicationModalText = document.getElementById('dedication-modal-text');
+      const dedicationModalSign = document.getElementById('dedication-modal-sign');
+      const closeDedicationBtn = document.getElementById('close-dedication-modal');
+
+      let isOpening = false;
+      let noteIndex = 0;
+
+      function openLetter() {
+        if (isOpening) return;
+        isOpening = true;
+
+        if (typeof window.__startRomanticAudio === 'function') {
+          window.__startRomanticAudio();
+        }
+
+        closedEnvelope.classList.add('envelope-opening');
+
+        setTimeout(() => {
+          presentationSection.classList.add('hidden');
+          openedExperience.classList.remove('hidden');
+          openedExperience.classList.remove('letter-unfold');
+          void openedExperience.offsetWidth;
+          openedExperience.classList.add('letter-unfold');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          isOpening = false;
+        }, 520);
+      }
+
+      function showClosedEnvelope() {
+        openedExperience.classList.add('hidden');
+        closedEnvelope.classList.remove('envelope-opening');
+        presentationSection.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (closedEnvelope) {
+        closedEnvelope.addEventListener('click', openLetter);
+        closedEnvelope.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLetter();
+          }
+        });
+      }
+
+      if (reopenBtn) reopenBtn.addEventListener('click', showClosedEnvelope);
+
+      if (cycleNoteBtn && activeNoteTag && activeNoteQuote) {
+        cycleNoteBtn.addEventListener('click', () => {
+          noteIndex = (noteIndex + 1) % ROMANTIC_NOTES.length;
+          const item = ROMANTIC_NOTES[noteIndex];
+          activeNoteTag.textContent = item.tag;
+          activeNoteQuote.textContent = item.quote;
+        });
+      }
+
+      function openDedicationModal(item) {
+        dedicationModalIcon.textContent = item.icon;
+        dedicationModalBadge.textContent = item.badge;
+        dedicationModalTitle.textContent = item.title;
+        dedicationModalText.textContent = item.fullText;
+        dedicationModalSign.textContent = item.sign;
+        dedicationModal.classList.remove('hidden');
+        dedicationModal.classList.add('flex');
+      }
+
+      function closeDedicationModal() {
+        dedicationModal.classList.add('hidden');
+        dedicationModal.classList.remove('flex');
+      }
+
+      if (closeDedicationBtn) closeDedicationBtn.addEventListener('click', closeDedicationModal);
+      if (dedicationModal) {
+        dedicationModal.addEventListener('click', (e) => {
+          if (e.target === dedicationModal) closeDedicationModal();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDedicationModal();
+      });
+
+      if (dedicationsGrid) {
+        DEDICATIONS.forEach((item) => {
+          const card = document.createElement('article');
+          card.className = 'crimson-glass crimson-card-hover rounded-3xl p-6 flex flex-col justify-between cursor-pointer group';
+
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="text-2xl">${item.icon}</span>
+                <span class="text-[11px] px-2.5 py-1 rounded-full bg-rose-950/80 text-rose-200 border border-rose-300/20">
+                  ${item.badge}
+                </span>
+              </div>
+              <h3 class="font-serif text-2xl font-semibold text-white mb-2 group-hover:text-rose-200 transition">
+                ${item.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-rose-100/85 leading-relaxed">
+                ${item.preview}
+              </p>
+            </div>
+            <div class="mt-5 pt-3 border-t border-rose-200/15 flex items-center justify-between text-xs text-rose-300">
+              <span>Leer completa</span>
+              <span>🌹 ↗</span>
+            </div>
+          `;
+
+          card.addEventListener('click', () => openDedicationModal(item));
+          dedicationsGrid.appendChild(card);
+        });
+      }
+    })();
+
+    /**
+     * Fondo animado con rosas rojas y pétalos suaves flotando.
+     */
+    (function setupFloatingRosesAndPetals() {
+      const canvas = document.getElementById('floral-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let w = 0;
+      let h = 0;
+      let dpr = 1;
+      const items = [];
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        buildItems();
+      }
+
+      function buildItems() {
+        items.length = 0;
+        const total = Math.min(42, Math.max(18, Math.floor((w * h) / 28000)));
+        const petalColors = ['#e11d48', '#be123c', '#fb7185', '#f43f5e', '#9f1239'];
+
+        for (let i = 0; i < total; i++) {
+          const isRose = i % 5 === 0;
+          items.push({
+            isRose,
+            x: Math.random() * w,
+            y: Math.random() * h,
+            size: isRose ? Math.random() * 10 + 14 : Math.random() * 7 + 5,
+            speedY: Math.random() * 0.55 + 0.25,
+            swayAmp: Math.random() * 22 + 10,
+            swaySpeed: Math.random() * 0.015 + 0.006,
+            phase: Math.random() * Math.PI * 2,
+            rotation: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.015,
+            alpha: isRose ? Math.random() * 0.35 + 0.35 : Math.random() * 0.45 + 0.25,
+            color: petalColors[i % petalColors.length],
+          });
+        }
+      }
+
+      function drawRose(x, y, size, rot, alpha) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        ctx.globalAlpha = alpha;
+
+        for (let i = 0; i < 6; i++) {
+          ctx.save();
+          ctx.rotate((Math.PI * 2 * i) / 6);
+          ctx.beginPath();
+          ctx.ellipse(0, -size * 0.42, size * 0.34, size * 0.5, 0, 0, Math.PI * 2);
+          ctx.fillStyle = i % 2 === 0 ? '#be123c' : '#e11d48';
+          ctx.fill();
+          ctx.restore();
+        }
+
+        ctx.beginPath();
+        ctx.arc(0, 0, size * 0.32, 0, Math.PI * 2);
+        ctx.fillStyle = '#881337';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(-size * 0.06, -size * 0.06, size * 0.16, 0, Math.PI * 2);
+        ctx.fillStyle = '#fda4af';
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawPetal(x, y, size, rot, alpha, color) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        ctx.globalAlpha = alpha;
+
+        ctx.beginPath();
+        ctx.moveTo(0, -size);
+        ctx.bezierCurveTo(size * 0.9, -size * 0.4, size * 0.85, size * 0.75, 0, size);
+        ctx.bezierCurveTo(-size * 0.85, size * 0.75, -size * 0.9, -size * 0.4, 0, -size);
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (let i = 0; i < items.length; i++) {
+          const it = items[i];
+          it.y += it.speedY;
+          it.phase += it.swaySpeed;
+          it.rotation += it.rotSpeed;
+
+          const drawX = it.x + Math.sin(it.phase) * it.swayAmp;
+
+          if (it.y > h + 30) {
+            it.y = -30;
+            it.x = Math.random() * w;
+          }
+
+          if (it.isRose) {
+            drawRose(drawX, it.y, it.size, it.rotation, it.alpha);
+          } else {
+            drawPetal(drawX, it.y, it.size, it.rotation, it.alpha, it.color);
+          }
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>
